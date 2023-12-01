@@ -1,0 +1,148 @@
+# Standards: 1.2
+---
+# @var gitlab_version:description: Version of Gitlab that gets installed
+gitlab_version: 16.3.4
+
+# @var gitlab_domain:description: Domain to access Gitlab
+gitlab_domain: git.example.com
+
+# @var gitlan_external_url:description: Full external URL to access Gitlab
+gitlab_external_url: "https://{{ gitlab_domain }}/"
+
+# @var gitlab_git_data_dir:description: Data directory for repositories
+gitlab_git_data_dir: /var/opt/gitlab/git-data
+
+# @var gitlab_backup_path:description: Path to store the backups
+gitlab_backup_path: /var/opt/gitlab/backups
+
+# @var gitlab_backup_upload_location:description: Upload location for backups
+gitlab_backup_upload_location:
+
+# @var gitlab_backup_upload_remote_directory:description: Remote upload directory
+gitlab_backup_upload_remote_directory:
+
+# @var gitlab_redirect_http_to_https:description: Always redirect HTTP to HTTPS
+gitlab_redirect_http_to_https: True
+
+# @var gitlab_ssl_certificate:description: Path for SSL certificate
+gitlab_ssl_certificate: "/etc/gitlab/ssl/{{ gitlab_domain }}.crt"
+
+# @var gitlab_ssl_certificate_key:description: Path for SSL certificate key
+gitlab_ssl_certificate_key: "/etc/gitlab/ssl/{{ gitlab_domain }}.key"
+
+# @var gitlab_smtp_enable:description: Enable SMTP configuration
+gitlab_smtp_enable: False
+
+# @var gitlab_smtp_address:description: Address for SMTP connection
+gitlab_smtp_address:
+
+# @var gitlab_smtp_port:description: Port for SMTP connection
+gitlab_smtp_port: 465
+
+# @var gitlab_smtp_user_name:description: Username for SMTP connection
+gitlab_smtp_user_name:
+
+# @var gitlab_smtp_password:description: Password for SMTP connection
+gitlab_smtp_password:
+
+# @var gitlab_smtp_domain:description: Domain for SMTP connection
+gitlab_smtp_domain:
+
+# @var gitlab_smtp_authentication:description: Authentication for SMTP connection
+gitlab_smtp_authentication: "login"
+
+# @var gitlab_smtp_enable_starttls_auto:description: Enable STARTTLS for SMTP connection
+gitlab_smtp_enable_starttls_auto: True
+
+# @var gitlab_smtp_tls:description: Enable TLS for SMTP connection
+gitlab_smtp_tls: False
+
+# @var gitlab_smtp_openssl_verify_mode:description: Verify SSL for SMTP connection
+gitlab_smtp_openssl_verify_mode: none
+
+# @var gitlab_smtp_ca_path:description: Path to CA certificates for SMTP connection
+gitlab_smtp_ca_path: /etc/ssl/certs
+
+# @var gitlab_smtp_ca_file:description: Path to CA certificate file for SMTP connections
+gitlab_smtp_ca_file: /etc/ssl/certs/ca-certificates.crt
+
+# @var gitlab_time_zone:description: Timezone used for Gitlab
+gitlab_time_zone: UTC
+
+# @var gitlab_backup_keep_time:description: Time to keep backups for
+gitlab_backup_keep_time: 604800
+
+# @var gitlab_block_auto_created_users:description: Block autocreated users
+gitlab_block_auto_created_users: False
+
+# @var gitlab_download_validate_certs:description: Validate download certificates
+gitlab_download_validate_certs: True
+
+# @var gitlab_default_theme:description: Default theme for Gitlab
+gitlab_default_theme: 2
+
+# @var gitlab_email_enabled:description: Enable email configuration
+gitlab_email_enabled: False
+
+# @var gitlab_email_from:description: From used for email configuration
+gitlab_email_from: gitlab@example.com
+
+# @var gitlab_email_display_name:description: Name used for email configuration
+gitlab_email_display_name: Gitlab
+
+# @var gitlab_email_reply_to:description: Reply used for email configuration
+gitlab_email_reply_to: gitlab@example.com
+
+# @var gitlab_registry_enable:description: Enable registry configuration
+gitlab_registry_enable: False
+
+# @var gitlab_registry_domain:description: Domain to access registry
+gitlab_registry_domain: registry.example.com
+
+# @var gitlab_registry_external_url:description: Full external URL to access registry
+gitlab_registry_external_url: "https://{{ gitlab_registry_domain }}"
+
+# @var gitlab_registry_nginx_ssl_certificate:description: Path to registry SSL certificate
+gitlab_registry_nginx_ssl_certificate: "/etc/gitlab/ssl/gitlab.crt"
+
+# @var gitlab_registry_nginx_ssl_certificate_key:description: Path to registry SSL certificate key
+gitlab_registry_nginx_ssl_certificate_key: "/etc/gitlab/ssl/gitlab.key"
+
+# @var gitlan_registry_path:description: Path to store registry data
+gitlan_registry_path:
+
+# @var gitlab_letsencrypt_enable:description: Enabled Lets Encrypt configuration
+gitlab_letsencrypt_enable: False
+
+# @var gitlab_letsencrypt_contact_emails:description: List of contact mail adresses for Lets Encrypt
+gitlab_letsencrypt_contact_emails:
+  - gitlab@example.com
+
+# @var gitlab_letsencrypt_auto_renew_hour:description: Hour to renew Lets Encrypt certificates
+gitlab_letsencrypt_auto_renew_hour: 1
+
+# @var gitlab_letsencrypt_auto_renew_minute:description: Minute to renew Lets Encrypt certificates
+gitlab_letsencrypt_auto_renew_minute: 30
+
+# @var gitlab_letsencrypt_auto_renew_day_of_month:description: Daf of month to renew Lets Encrypt certificates
+gitlab_letsencrypt_auto_renew_day_of_month: "*/7"
+
+# @var gitlab_letsencrypt_auto_renew:description: Enable autorenew for LEts Encrypt
+gitlab_letsencrypt_auto_renew: True
+
+# @var gitlab_omniauth_providers:description: List of Omniauth providers
+gitlab_omniauth_providers: []
+
+# @var gitlab_omniauth_allow_single_sign_on:description: List of Omniauth methods to allow single signon
+gitlab_omniauth_allow_single_sign_on: []
+
+# @var gitlab_omniauth_auto_link_user:description: List of Omniauth methods to link users
+gitlab_omniauth_auto_link_user: []
+
+# @var gitlab_extra_config:description: Optional additional configuration for gitlab.rb config file
+gitlab_extra_config:
+
+# @var gitlab_keyring:description: Path for the repository keyring
+gitlab_keyring: /usr/share/keyrings/gitlab-archive-keyring.gpg
+
+...

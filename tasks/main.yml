@@ -1,0 +1,65 @@
+# Standards: 1.2
+---
+- name: Download repo key
+  shell:
+    cmd: "curl -sSL 'https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey' | gpg --dearmor --output {{ gitlab_keyring }}"
+    creates: "{{ gitlab_keyring }}"
+  tags:
+    - gitlab
+
+- name: Add apt repository
+  apt_repository:
+    repo: "deb [signed-by={{ gitlab_keyring }}] https://packages.gitlab.com/gitlab/gitlab-ce/ubuntu/ {{ ansible_distribution_release }} main"
+    filename: gitlab
+    update_cache: True
+    state: present
+  tags:
+    - gitlab
+
+- name: Pin package version
+  copy:
+    content: |
+      Explantion: Pin added by gitlab role
+      Package: gitlab-ce
+      Pin: version {{ gitlab_version }}*
+      Pin-Priority: 1000
+    dest: /etc/apt/preferences.d/gitlab
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
+  tags:
+    - gitlab
+
+- name: Install required packages
+  loop:
+    - curl
+    - openssl
+    - tzdata
+    - "gitlab-ce={{ gitlab_version }}*"
+  package:
+    name: "{{ item }}"
+    state: present
+  tags:
+    - gitlab
+
+- name: Initial reconfigure run
+  failed_when: False
+  command:
+    cmd: gitlab-ctl reconfigure
+    creates: /var/opt/gitlab/bootstrapped
+  tags:
+    - gitlab
+
+- name: Write config template
+  notify:
+    - Restart gitlab
+  template:
+    src: gitlab.j2
+    dest: /etc/gitlab/gitlab.rb
+    owner: root
+    group: root
+    mode: u=rw,g=,o=
+  tags:
+    - gitlab
+
+...
