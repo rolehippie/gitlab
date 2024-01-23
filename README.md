@@ -39,6 +39,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [gitlab_letsencrypt_auto_renew_minute](#gitlab_letsencrypt_auto_renew_minute)
   - [gitlab_letsencrypt_contact_emails](#gitlab_letsencrypt_contact_emails)
   - [gitlab_letsencrypt_enable](#gitlab_letsencrypt_enable)
+  - [gitlab_omniauth_allow_bypass_two_factor](#gitlab_omniauth_allow_bypass_two_factor)
   - [gitlab_omniauth_allow_single_sign_on](#gitlab_omniauth_allow_single_sign_on)
   - [gitlab_omniauth_auto_link_user](#gitlab_omniauth_auto_link_user)
   - [gitlab_omniauth_providers](#gitlab_omniauth_providers)
@@ -298,6 +299,14 @@ Enabled Lets Encrypt configuration
 gitlab_letsencrypt_enable: false
 ```
 
+### gitlab_omniauth_allow_bypass_two_factor
+
+#### Default value
+
+```YAML
+gitlab_omniauth_allow_bypass_two_factor: []
+```
+
 ### gitlab_omniauth_allow_single_sign_on
 
 List of Omniauth methods to allow single signon
@@ -310,7 +319,7 @@ gitlab_omniauth_allow_single_sign_on: []
 
 ### gitlab_omniauth_auto_link_user
 
-List of Omniauth methods to link users
+List of Omniauth methods to bypass 2FA.
 
 #### Default value
 
