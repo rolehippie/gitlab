@@ -22,6 +22,28 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [gitlab_backup_upload_location](#gitlab_backup_upload_location)
   - [gitlab_backup_upload_remote_directory](#gitlab_backup_upload_remote_directory)
   - [gitlab_block_auto_created_users](#gitlab_block_auto_created_users)
+  - [gitlab_config_backup_day](#gitlab_config_backup_day)
+  - [gitlab_config_backup_enabled](#gitlab_config_backup_enabled)
+  - [gitlab_config_backup_hour](#gitlab_config_backup_hour)
+  - [gitlab_config_backup_job](#gitlab_config_backup_job)
+  - [gitlab_config_backup_minute](#gitlab_config_backup_minute)
+  - [gitlab_config_backup_month](#gitlab_config_backup_month)
+  - [gitlab_config_backup_path](#gitlab_config_backup_path)
+  - [gitlab_config_backup_post](#gitlab_config_backup_post)
+  - [gitlab_config_backup_pre](#gitlab_config_backup_pre)
+  - [gitlab_config_backup_script](#gitlab_config_backup_script)
+  - [gitlab_config_backup_weekday](#gitlab_config_backup_weekday)
+  - [gitlab_content_backup_day](#gitlab_content_backup_day)
+  - [gitlab_content_backup_enabled](#gitlab_content_backup_enabled)
+  - [gitlab_content_backup_hour](#gitlab_content_backup_hour)
+  - [gitlab_content_backup_job](#gitlab_content_backup_job)
+  - [gitlab_content_backup_minute](#gitlab_content_backup_minute)
+  - [gitlab_content_backup_month](#gitlab_content_backup_month)
+  - [gitlab_content_backup_path](#gitlab_content_backup_path)
+  - [gitlab_content_backup_post](#gitlab_content_backup_post)
+  - [gitlab_content_backup_pre](#gitlab_content_backup_pre)
+  - [gitlab_content_backup_script](#gitlab_content_backup_script)
+  - [gitlab_content_backup_weekday](#gitlab_content_backup_weekday)
   - [gitlab_default_theme](#gitlab_default_theme)
   - [gitlab_domain](#gitlab_domain)
   - [gitlab_download_validate_certs](#gitlab_download_validate_certs)
@@ -43,6 +65,28 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [gitlab_omniauth_allow_single_sign_on](#gitlab_omniauth_allow_single_sign_on)
   - [gitlab_omniauth_auto_link_user](#gitlab_omniauth_auto_link_user)
   - [gitlab_omniauth_providers](#gitlab_omniauth_providers)
+  - [gitlab_prune_daily_day](#gitlab_prune_daily_day)
+  - [gitlab_prune_daily_enabled](#gitlab_prune_daily_enabled)
+  - [gitlab_prune_daily_hour](#gitlab_prune_daily_hour)
+  - [gitlab_prune_daily_job](#gitlab_prune_daily_job)
+  - [gitlab_prune_daily_minute](#gitlab_prune_daily_minute)
+  - [gitlab_prune_daily_month](#gitlab_prune_daily_month)
+  - [gitlab_prune_daily_path](#gitlab_prune_daily_path)
+  - [gitlab_prune_daily_post](#gitlab_prune_daily_post)
+  - [gitlab_prune_daily_pre](#gitlab_prune_daily_pre)
+  - [gitlab_prune_daily_script](#gitlab_prune_daily_script)
+  - [gitlab_prune_daily_weekday](#gitlab_prune_daily_weekday)
+  - [gitlab_prune_weekly_day](#gitlab_prune_weekly_day)
+  - [gitlab_prune_weekly_enabled](#gitlab_prune_weekly_enabled)
+  - [gitlab_prune_weekly_hour](#gitlab_prune_weekly_hour)
+  - [gitlab_prune_weekly_job](#gitlab_prune_weekly_job)
+  - [gitlab_prune_weekly_minute](#gitlab_prune_weekly_minute)
+  - [gitlab_prune_weekly_month](#gitlab_prune_weekly_month)
+  - [gitlab_prune_weekly_path](#gitlab_prune_weekly_path)
+  - [gitlab_prune_weekly_post](#gitlab_prune_weekly_post)
+  - [gitlab_prune_weekly_pre](#gitlab_prune_weekly_pre)
+  - [gitlab_prune_weekly_script](#gitlab_prune_weekly_script)
+  - [gitlab_prune_weekly_weekday](#gitlab_prune_weekly_weekday)
   - [gitlab_redirect_http_to_https](#gitlab_redirect_http_to_https)
   - [gitlab_registry_domain](#gitlab_registry_domain)
   - [gitlab_registry_enable](#gitlab_registry_enable)
@@ -128,6 +172,226 @@ Block autocreated users
 
 ```YAML
 gitlab_block_auto_created_users: false
+```
+
+### gitlab_config_backup_day
+
+
+
+#### Default value
+
+```YAML
+gitlab_config_backup_day: '*'
+```
+
+### gitlab_config_backup_enabled
+
+
+
+#### Default value
+
+```YAML
+gitlab_config_backup_enabled: false
+```
+
+### gitlab_config_backup_hour
+
+
+
+#### Default value
+
+```YAML
+gitlab_config_backup_hour: 03
+```
+
+### gitlab_config_backup_job
+
+
+
+#### Default value
+
+```YAML
+gitlab_config_backup_job: /usr/bin/cronic {{ gitlab_config_backup_path }}
+```
+
+### gitlab_config_backup_minute
+
+
+
+#### Default value
+
+```YAML
+gitlab_config_backup_minute: 00
+```
+
+### gitlab_config_backup_month
+
+
+
+#### Default value
+
+```YAML
+gitlab_config_backup_month: '*'
+```
+
+### gitlab_config_backup_path
+
+
+
+#### Default value
+
+```YAML
+gitlab_config_backup_path: /usr/local/bin/gitlab-backup-config
+```
+
+### gitlab_config_backup_post
+
+
+
+#### Default value
+
+```YAML
+gitlab_config_backup_post:
+```
+
+### gitlab_config_backup_pre
+
+
+
+#### Default value
+
+```YAML
+gitlab_config_backup_pre:
+```
+
+### gitlab_config_backup_script
+
+
+
+#### Default value
+
+```YAML
+gitlab_config_backup_script: gitlab-ctl backup-etc --delete-old-backups
+```
+
+### gitlab_config_backup_weekday
+
+
+
+#### Default value
+
+```YAML
+gitlab_config_backup_weekday: '*'
+```
+
+### gitlab_content_backup_day
+
+
+
+#### Default value
+
+```YAML
+gitlab_content_backup_day: '*'
+```
+
+### gitlab_content_backup_enabled
+
+
+
+#### Default value
+
+```YAML
+gitlab_content_backup_enabled: false
+```
+
+### gitlab_content_backup_hour
+
+
+
+#### Default value
+
+```YAML
+gitlab_content_backup_hour: 03
+```
+
+### gitlab_content_backup_job
+
+
+
+#### Default value
+
+```YAML
+gitlab_content_backup_job: /usr/bin/cronic {{ gitlab_content_backup_path }}
+```
+
+### gitlab_content_backup_minute
+
+
+
+#### Default value
+
+```YAML
+gitlab_content_backup_minute: 00
+```
+
+### gitlab_content_backup_month
+
+
+
+#### Default value
+
+```YAML
+gitlab_content_backup_month: '*'
+```
+
+### gitlab_content_backup_path
+
+
+
+#### Default value
+
+```YAML
+gitlab_content_backup_path: /usr/local/bin/gitlab-backup-content
+```
+
+### gitlab_content_backup_post
+
+
+
+#### Default value
+
+```YAML
+gitlab_content_backup_post:
+```
+
+### gitlab_content_backup_pre
+
+
+
+#### Default value
+
+```YAML
+gitlab_content_backup_pre:
+```
+
+### gitlab_content_backup_script
+
+
+
+#### Default value
+
+```YAML
+gitlab_content_backup_script: gitlab-backup create
+```
+
+### gitlab_content_backup_weekday
+
+
+
+#### Default value
+
+```YAML
+gitlab_content_backup_weekday: '*'
 ```
 
 ### gitlab_default_theme
@@ -335,6 +599,226 @@ List of Omniauth providers
 
 ```YAML
 gitlab_omniauth_providers: []
+```
+
+### gitlab_prune_daily_day
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_daily_day: '*'
+```
+
+### gitlab_prune_daily_enabled
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_daily_enabled: false
+```
+
+### gitlab_prune_daily_hour
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_daily_hour: 02
+```
+
+### gitlab_prune_daily_job
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_daily_job: /usr/bin/cronic {{ gitlab_prune_daily_path }}
+```
+
+### gitlab_prune_daily_minute
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_daily_minute: 00
+```
+
+### gitlab_prune_daily_month
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_daily_month: '*'
+```
+
+### gitlab_prune_daily_path
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_daily_path: /usr/local/bin/gitlab-prune-daily
+```
+
+### gitlab_prune_daily_post
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_daily_post:
+```
+
+### gitlab_prune_daily_pre
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_daily_pre:
+```
+
+### gitlab_prune_daily_script
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_daily_script: gitlab-ctl registry-garbage-collect
+```
+
+### gitlab_prune_daily_weekday
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_daily_weekday: 1-6
+```
+
+### gitlab_prune_weekly_day
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_weekly_day: '*'
+```
+
+### gitlab_prune_weekly_enabled
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_weekly_enabled: false
+```
+
+### gitlab_prune_weekly_hour
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_weekly_hour: 02
+```
+
+### gitlab_prune_weekly_job
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_weekly_job: /usr/bin/cronic {{ gitlab_prune_weekly_path }}
+```
+
+### gitlab_prune_weekly_minute
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_weekly_minute: 00
+```
+
+### gitlab_prune_weekly_month
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_weekly_month: '*'
+```
+
+### gitlab_prune_weekly_path
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_weekly_path: /usr/local/bin/gitlab-prune-weekly
+```
+
+### gitlab_prune_weekly_post
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_weekly_post:
+```
+
+### gitlab_prune_weekly_pre
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_weekly_pre:
+```
+
+### gitlab_prune_weekly_script
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_weekly_script: gitlab-ctl registry-garbage-collect -m
+```
+
+### gitlab_prune_weekly_weekday
+
+
+
+#### Default value
+
+```YAML
+gitlab_prune_weekly_weekday: 0
 ```
 
 ### gitlab_redirect_http_to_https
