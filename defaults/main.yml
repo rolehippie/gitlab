@@ -145,6 +145,138 @@ gitlab_omniauth_allow_bypass_two_factor: []
 # @var gitlab_extra_config:description: Optional additional configuration for gitlab.rb config file
 gitlab_extra_config:
 
+# @var gitlab_prune_daily_enabled:description:
+gitlab_prune_daily_enabled: False
+
+# @var gitlab_prune_daily_minute:description:
+gitlab_prune_daily_minute: 00
+
+# @var gitlab_prune_daily_hour:description:
+gitlab_prune_daily_hour: 02
+
+# @var gitlab_prune_daily_day:description:
+gitlab_prune_daily_day: "*"
+
+# @var gitlab_prune_daily_month:description:
+gitlab_prune_daily_month: "*"
+
+# @var gitlab_prune_daily_weekday:description:
+gitlab_prune_daily_weekday: 1-6
+
+# @var gitlab_prune_daily_pre:description:
+gitlab_prune_daily_pre:
+
+# @var gitlab_prune_daily_script:description:
+gitlab_prune_daily_script: gitlab-ctl registry-garbage-collect
+
+# @var gitlab_prune_daily_post:description:
+gitlab_prune_daily_post:
+
+# @var gitlab_prune_daily_path:description:
+gitlab_prune_daily_path: /usr/local/bin/gitlab-prune-daily
+
+# @var gitlab_prune_daily_job:description:
+gitlab_prune_daily_job: "/usr/bin/cronic {{ gitlab_prune_daily_path }}"
+
+# @var gitlab_prune_weekly_enabled:description:
+gitlab_prune_weekly_enabled: False
+
+# @var gitlab_prune_weekly_minute:description:
+gitlab_prune_weekly_minute: 00
+
+# @var gitlab_prune_weekly_hour:description:
+gitlab_prune_weekly_hour: 02
+
+# @var gitlab_prune_weekly_day:description:
+gitlab_prune_weekly_day: "*"
+
+# @var gitlab_prune_weekly_month:description:
+gitlab_prune_weekly_month: "*"
+
+# @var gitlab_prune_weekly_weekday:description:
+gitlab_prune_weekly_weekday: 0
+
+# @var gitlab_prune_weekly_pre:description:
+gitlab_prune_weekly_pre:
+
+# @var gitlab_prune_weekly_script:description:
+gitlab_prune_weekly_script: gitlab-ctl registry-garbage-collect -m
+
+# @var gitlab_prune_weekly_post:description:
+gitlab_prune_weekly_post:
+
+# @var gitlab_prune_weekly_path:description:
+gitlab_prune_weekly_path: /usr/local/bin/gitlab-prune-weekly
+
+# @var gitlab_prune_weekly_job:description:
+gitlab_prune_weekly_job: "/usr/bin/cronic {{ gitlab_prune_weekly_path }}"
+
+# @var gitlab_config_backup_enabled:description:
+gitlab_config_backup_enabled: False
+
+# @var gitlab_config_backup_minute:description:
+gitlab_config_backup_minute: 00
+
+# @var gitlab_config_backup_hour:description:
+gitlab_config_backup_hour: 03
+
+# @var gitlab_config_backup_day:description:
+gitlab_config_backup_day: "*"
+
+# @var gitlab_config_backup_month:description:
+gitlab_config_backup_month: "*"
+
+# @var gitlab_config_backup_weekday:description:
+gitlab_config_backup_weekday: "*"
+
+# @var gitlab_config_backup_pre:description:
+gitlab_config_backup_pre:
+
+# @var gitlab_config_backup_script:description:
+gitlab_config_backup_script: gitlab-ctl backup-etc --delete-old-backups
+
+# @var gitlab_config_backup_post:description:
+gitlab_config_backup_post:
+
+# @var gitlab_config_backup_path:description:
+gitlab_config_backup_path: /usr/local/bin/gitlab-backup-config
+
+# @var gitlab_config_backup_job:description:
+gitlab_config_backup_job: "/usr/bin/cronic {{ gitlab_config_backup_path }}"
+
+# @var gitlab_content_backup_enabled:description:
+gitlab_content_backup_enabled: False
+
+# @var gitlab_content_backup_minute:description:
+gitlab_content_backup_minute: 00
+
+# @var gitlab_content_backup_hour:description:
+gitlab_content_backup_hour: 03
+
+# @var gitlab_content_backup_day:description:
+gitlab_content_backup_day: "*"
+
+# @var gitlab_content_backup_month:description:
+gitlab_content_backup_month: "*"
+
+# @var gitlab_content_backup_weekday:description:
+gitlab_content_backup_weekday: "*"
+
+# @var gitlab_content_backup_pre:description:
+gitlab_content_backup_pre:
+
+# @var gitlab_content_backup_script:description:
+gitlab_content_backup_script: gitlab-backup create
+
+# @var gitlab_content_backup_post:description:
+gitlab_content_backup_post:
+
+# @var gitlab_content_backup_path:description:
+gitlab_content_backup_path: /usr/local/bin/gitlab-backup-content
+
+# @var gitlab_content_backup_job:description:
+gitlab_content_backup_job: "/usr/bin/cronic {{ gitlab_content_backup_path }}"
+
 # @var gitlab_keyring:description: Path for the repository keyring
 gitlab_keyring: /usr/share/keyrings/gitlab-archive-keyring.gpg
 

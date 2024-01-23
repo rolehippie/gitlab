@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+{% if gitlab_prune_weekly_pre | default(False) %}
+{{ gitlab_prune_weekly_pre | trim }}
+{% endif %}
+{{ gitlab_prune_weekly_script }}
+{% if gitlab_prune_weekly_post | default(False) %}
+{{ gitlab_prune_weekly_post | trim }}
+{% endif %}
