@@ -71,6 +71,9 @@ gitlab_rails['registry_path'] = "{{ gitlan_registry_path }}"
 gitlab_rails['omniauth_providers'] = {{ gitlab_omniauth_providers | to_json }}
 gitlab_rails['omniauth_allow_single_sign_on'] = {{ gitlab_omniauth_allow_single_sign_on | to_json }}
 gitlab_rails['omniauth_auto_link_user'] = {{ gitlab_omniauth_auto_link_user | to_json }}
+{% if gitlab_omniauth_auto_link_user | default(False) %}
+gitlab_rails['omniauth_allow_bypass_two_factor'] = {{ gitlab_omniauth_allow_bypass_two_factor | to_json }}
+{% endif %}
 {% endif %}
 {% if gitlab_extra_config | default(False) %}
 

@@ -139,6 +139,9 @@ gitlab_omniauth_allow_single_sign_on: []
 # @var gitlab_omniauth_auto_link_user:description: List of Omniauth methods to link users
 gitlab_omniauth_auto_link_user: []
 
+# @var gitlab_omniauth_auto_link_user:description: List of Omniauth methods to bypass 2FA.
+gitlab_omniauth_allow_bypass_two_factor: []
+
 # @var gitlab_extra_config:description: Optional additional configuration for gitlab.rb config file
 gitlab_extra_config:
 
