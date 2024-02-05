@@ -1,4 +1,3 @@
-# Standards: 1.2
 ---
 # @var gitlab_version:description: Version of Gitlab that gets installed
 gitlab_version: 16.3.4
