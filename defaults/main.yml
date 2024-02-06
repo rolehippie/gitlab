@@ -148,10 +148,10 @@ gitlab_extra_config:
 gitlab_prune_daily_enabled: False
 
 # @var gitlab_prune_daily_minute:description:
-gitlab_prune_daily_minute: 00
+gitlab_prune_daily_minute: "00"
 
 # @var gitlab_prune_daily_hour:description:
-gitlab_prune_daily_hour: 02
+gitlab_prune_daily_hour: "02"
 
 # @var gitlab_prune_daily_day:description:
 gitlab_prune_daily_day: "*"
@@ -160,7 +160,7 @@ gitlab_prune_daily_day: "*"
 gitlab_prune_daily_month: "*"
 
 # @var gitlab_prune_daily_weekday:description:
-gitlab_prune_daily_weekday: 1-6
+gitlab_prune_daily_weekday: "1-6"
 
 # @var gitlab_prune_daily_pre:description:
 gitlab_prune_daily_pre:
@@ -181,10 +181,10 @@ gitlab_prune_daily_job: "/usr/bin/cronic {{ gitlab_prune_daily_path }}"
 gitlab_prune_weekly_enabled: False
 
 # @var gitlab_prune_weekly_minute:description:
-gitlab_prune_weekly_minute: 00
+gitlab_prune_weekly_minute: "00"
 
 # @var gitlab_prune_weekly_hour:description:
-gitlab_prune_weekly_hour: 02
+gitlab_prune_weekly_hour: "02"
 
 # @var gitlab_prune_weekly_day:description:
 gitlab_prune_weekly_day: "*"
@@ -193,7 +193,7 @@ gitlab_prune_weekly_day: "*"
 gitlab_prune_weekly_month: "*"
 
 # @var gitlab_prune_weekly_weekday:description:
-gitlab_prune_weekly_weekday: 0
+gitlab_prune_weekly_weekday: "0"
 
 # @var gitlab_prune_weekly_pre:description:
 gitlab_prune_weekly_pre:
@@ -214,10 +214,10 @@ gitlab_prune_weekly_job: "/usr/bin/cronic {{ gitlab_prune_weekly_path }}"
 gitlab_config_backup_enabled: False
 
 # @var gitlab_config_backup_minute:description:
-gitlab_config_backup_minute: 00
+gitlab_config_backup_minute: "00"
 
 # @var gitlab_config_backup_hour:description:
-gitlab_config_backup_hour: 03
+gitlab_config_backup_hour: "03"
 
 # @var gitlab_config_backup_day:description:
 gitlab_config_backup_day: "*"
@@ -247,10 +247,10 @@ gitlab_config_backup_job: "/usr/bin/cronic {{ gitlab_config_backup_path }}"
 gitlab_content_backup_enabled: False
 
 # @var gitlab_content_backup_minute:description:
-gitlab_content_backup_minute: 00
+gitlab_content_backup_minute: "00"
 
 # @var gitlab_content_backup_hour:description:
-gitlab_content_backup_hour: 03
+gitlab_content_backup_hour: "03"
 
 # @var gitlab_content_backup_day:description:
 gitlab_content_backup_day: "*"

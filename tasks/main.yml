@@ -1,13 +1,13 @@
 ---
 - name: Download repo key
-  shell:
+  ansible.builtin.shell:
     cmd: "curl -sSL 'https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey' | gpg --dearmor --output {{ gitlab_keyring }}"
     creates: "{{ gitlab_keyring }}"
   tags:
     - gitlab
 
 - name: Add apt repository
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "deb [signed-by={{ gitlab_keyring }}] https://packages.gitlab.com/gitlab/gitlab-ce/ubuntu/ {{ ansible_distribution_release }} main"
     filename: gitlab
     update_cache: True
@@ -16,7 +16,7 @@
     - gitlab
 
 - name: Pin package version
-  copy:
+  ansible.builtin.copy:
     content: |
       Explantion: Pin added by gitlab role
       Package: gitlab-ce
@@ -35,7 +35,7 @@
     - openssl
     - tzdata
     - "gitlab-ce={{ gitlab_version }}*"
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: present
   tags:
@@ -43,7 +43,7 @@
 
 - name: Initial reconfigure run
   failed_when: False
-  command:
+  ansible.builtin.command:
     cmd: gitlab-ctl reconfigure
     creates: /var/opt/gitlab/bootstrapped
   tags:
@@ -52,7 +52,7 @@
 - name: Write config template
   notify:
     - Restart gitlab
-  template:
+  ansible.builtin.template:
     src: gitlab.j2
     dest: /etc/gitlab/gitlab.rb
     owner: root
@@ -62,7 +62,7 @@
     - gitlab
 
 - name: Create daily cronjob
-  cron:
+  ansible.builtin.cron:
     name: daily
     cron_file: gitlab
     minute: "{{ gitlab_prune_daily_minute }}"
@@ -79,7 +79,7 @@
 - name: Write daily prune
   when:
     - gitlab_prune_daily_enabled
-  template:
+  ansible.builtin.template:
     src: prune/daily.j2
     dest: "{{ gitlab_prune_daily_path }}"
     owner: root
@@ -91,14 +91,14 @@
 - name: Remove daily prune
   when:
     - not gitlab_prune_daily_enabled
-  file:
+  ansible.builtin.file:
     path: "{{ gitlab_prune_daily_path }}"
     state: absent
   tags:
     - gitlab
 
 - name: Create weekly cronjob
-  cron:
+  ansible.builtin.cron:
     name: weekly
     cron_file: gitlab
     minute: "{{ gitlab_prune_weekly_minute }}"
@@ -115,7 +115,7 @@
 - name: Write weekly prune
   when:
     - gitlab_prune_weekly_enabled
-  template:
+  ansible.builtin.template:
     src: prune/weekly.j2
     dest: "{{ gitlab_prune_weekly_path }}"
     owner: root
@@ -127,14 +127,14 @@
 - name: Remove weekly prune
   when:
     - not gitlab_prune_weekly_enabled
-  file:
+  ansible.builtin.file:
     path: "{{ gitlab_prune_weekly_path }}"
     state: absent
   tags:
     - gitlab
 
 - name: Create config cronjob
-  cron:
+  ansible.builtin.cron:
     name: config
     cron_file: gitlab
     minute: "{{ gitlab_config_backup_minute }}"
@@ -151,7 +151,7 @@
 - name: Write config backup
   when:
     - gitlab_config_backup_enabled
-  template:
+  ansible.builtin.template:
     src: backup/config.j2
     dest: "{{ gitlab_config_backup_path }}"
     owner: root
@@ -163,14 +163,14 @@
 - name: Remove config backup
   when:
     - not gitlab_config_backup_enabled
-  file:
+  ansible.builtin.file:
     path: "{{ gitlab_config_backup_path }}"
     state: absent
   tags:
     - gitlab
 
 - name: Create content cronjob
-  cron:
+  ansible.builtin.cron:
     name: content
     cron_file: gitlab
     minute: "{{ gitlab_content_backup_minute }}"
@@ -187,7 +187,7 @@
 - name: Write content backup
   when:
     - gitlab_content_backup_enabled
-  template:
+  ansible.builtin.template:
     src: backup/content.j2
     dest: "{{ gitlab_content_backup_path }}"
     owner: root
@@ -199,7 +199,7 @@
 - name: Remove content backup
   when:
     - not gitlab_content_backup_enabled
-  file:
+  ansible.builtin.file:
     path: "{{ gitlab_content_backup_path }}"
     state: absent
   tags:
