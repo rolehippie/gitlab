@@ -1,9 +1,8 @@
-# Standards: 1.2
 ---
 - name: Restart gitlab
   register: gitlab_restart
   failed_when: gitlab_restart.rc != 0
-  command:
+  ansible.builtin.command:
     cmd: gitlab-ctl reconfigure
 
 ...

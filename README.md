@@ -201,7 +201,7 @@ gitlab_config_backup_enabled: false
 #### Default value
 
 ```YAML
-gitlab_config_backup_hour: 03
+gitlab_config_backup_hour: '03'
 ```
 
 ### gitlab_config_backup_job
@@ -221,7 +221,7 @@ gitlab_config_backup_job: /usr/bin/cronic {{ gitlab_config_backup_path }}
 #### Default value
 
 ```YAML
-gitlab_config_backup_minute: 00
+gitlab_config_backup_minute: '00'
 ```
 
 ### gitlab_config_backup_month
@@ -311,7 +311,7 @@ gitlab_content_backup_enabled: false
 #### Default value
 
 ```YAML
-gitlab_content_backup_hour: 03
+gitlab_content_backup_hour: '03'
 ```
 
 ### gitlab_content_backup_job
@@ -331,7 +331,7 @@ gitlab_content_backup_job: /usr/bin/cronic {{ gitlab_content_backup_path }}
 #### Default value
 
 ```YAML
-gitlab_content_backup_minute: 00
+gitlab_content_backup_minute: '00'
 ```
 
 ### gitlab_content_backup_month
@@ -628,7 +628,7 @@ gitlab_prune_daily_enabled: false
 #### Default value
 
 ```YAML
-gitlab_prune_daily_hour: 02
+gitlab_prune_daily_hour: '02'
 ```
 
 ### gitlab_prune_daily_job
@@ -648,7 +648,7 @@ gitlab_prune_daily_job: /usr/bin/cronic {{ gitlab_prune_daily_path }}
 #### Default value
 
 ```YAML
-gitlab_prune_daily_minute: 00
+gitlab_prune_daily_minute: '00'
 ```
 
 ### gitlab_prune_daily_month
@@ -738,7 +738,7 @@ gitlab_prune_weekly_enabled: false
 #### Default value
 
 ```YAML
-gitlab_prune_weekly_hour: 02
+gitlab_prune_weekly_hour: '02'
 ```
 
 ### gitlab_prune_weekly_job
@@ -758,7 +758,7 @@ gitlab_prune_weekly_job: /usr/bin/cronic {{ gitlab_prune_weekly_path }}
 #### Default value
 
 ```YAML
-gitlab_prune_weekly_minute: 00
+gitlab_prune_weekly_minute: '00'
 ```
 
 ### gitlab_prune_weekly_month
@@ -818,7 +818,7 @@ gitlab_prune_weekly_script: gitlab-ctl registry-garbage-collect -m
 #### Default value
 
 ```YAML
-gitlab_prune_weekly_weekday: 0
+gitlab_prune_weekly_weekday: '0'
 ```
 
 ### gitlab_redirect_http_to_https
