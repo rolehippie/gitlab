@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0](https://github.com/rolehippie/gitlab/compare/v1.2.0...v2.0.0) (2024-02-12)
+
+
+### Features
+
+* drop support for ubuntu 18.04 ([67a0bde](https://github.com/rolehippie/gitlab/commit/67a0bde67d25ad05269e6c77e3fa38ea4a98bda1))
+* used full qualified collection names ([07503ad](https://github.com/rolehippie/gitlab/commit/07503ade02c165ef88e4d6cd619983733e8a0377))
+
 ## [1.2.0](https://github.com/rolehippie/gitlab/compare/v1.1.0...v1.2.0) (2024-01-23)
 
 
