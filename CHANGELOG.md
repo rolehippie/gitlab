@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.1.0](https://github.com/rolehippie/gitlab/compare/v2.0.0...v2.1.0) (2025-07-01)
+
+
+### Features
+
+* add different config for newer gitlab versions ([a2e9000](https://github.com/rolehippie/gitlab/commit/a2e9000a0b6159e0df3270dd9f57a592844a5c35))
+* upgrade gitlab version to 18.1.1 ([f841706](https://github.com/rolehippie/gitlab/commit/f841706cacc917c0a1726c014a00f2959a385242))
+
 ## [2.0.0](https://github.com/rolehippie/gitlab/compare/v1.2.0...v2.0.0) (2024-02-12)
 
 
