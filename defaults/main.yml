@@ -1,6 +1,6 @@
 ---
 # @var gitlab_version:description: Version of Gitlab that gets installed
-gitlab_version: 16.3.4
+gitlab_version: 18.1.1
 
 # @var gitlab_domain:description: Domain to access Gitlab
 gitlab_domain: git.example.com
