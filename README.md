@@ -1038,7 +1038,7 @@ Version of Gitlab that gets installed
 #### Default value
 
 ```YAML
-gitlab_version: 16.3.4
+gitlab_version: 18.1.1
 ```
 
 ### gitlan_external_url
