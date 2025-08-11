@@ -1,4 +1,4 @@
-# gitlab
+# workspace
 
 [![Source Code](https://img.shields.io/badge/github-source%20code-blue?logo=github&logoColor=white)](https://github.com/rolehippie/gitlab)
 [![General Workflow](https://github.com/rolehippie/gitlab/actions/workflows/general.yml/badge.svg)](https://github.com/rolehippie/gitlab/actions/workflows/general.yml)
@@ -1058,7 +1058,6 @@ gitlan_registry_path:
 ## Discovered Tags
 
 **_gitlab_**
-
 
 ## Dependencies
 
