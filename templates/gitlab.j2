@@ -40,10 +40,10 @@ gitaly['configuration'] = {
 {% endif %}
 
 gitlab_rails['backup_path'] = "{{ gitlab_backup_path }}"
-{% if gitlab_backup_upload_location | default(False) %}
+{% if gitlab_backup_upload_location | default(false) %}
 gitlab_rails['backup_upload_connection'] = {{ gitlab_backup_upload_location | to_json }}
 {% endif %}
-{% if gitlab_backup_upload_remote_directory | default(False) %}
+{% if gitlab_backup_upload_remote_directory | default(false) %}
 gitlab_rails['backup_upload_remote_directory'] = "{{ gitlab_backup_upload_remote_directory }}"
 {% endif %}
 
@@ -51,14 +51,14 @@ gitlab_rails['smtp_enable'] = {{ gitlab_smtp_enable | lower }}
 {% if gitlab_smtp_enable %}
 gitlab_rails['smtp_address'] = "{{ gitlab_smtp_address }}"
 gitlab_rails['smtp_port'] = {{ gitlab_smtp_port }}
-{% if gitlab_smtp_user_name | default(False) %}
+{% if gitlab_smtp_user_name | default(false) %}
 gitlab_rails['smtp_user_name'] = "{{ gitlab_smtp_user_name }}"
 {% endif %}
-{% if gitlab_smtp_password | default(False) %}
+{% if gitlab_smtp_password | default(false) %}
 gitlab_rails['smtp_password'] = "{{ gitlab_smtp_password }}"
 {% endif %}
 gitlab_rails['smtp_domain'] = "{{ gitlab_smtp_domain }}"
-{% if gitlab_smtp_authentication | default(False) %}
+{% if gitlab_smtp_authentication | default(false) %}
 gitlab_rails['smtp_authentication'] = "{{ gitlab_smtp_authentication }}"
 {% endif %}
 gitlab_rails['smtp_enable_starttls_auto'] = {{ gitlab_smtp_enable_starttls_auto | lower }}
@@ -73,20 +73,20 @@ registry['enable'] = {{ gitlab_registry_enable | lower }}
 registry_external_url "{{ gitlab_registry_external_url }}"
 registry_nginx['ssl_certificate'] = "{{ gitlab_registry_nginx_ssl_certificate }}"
 registry_nginx['ssl_certificate_key'] = "{{ gitlab_registry_nginx_ssl_certificate_key }}"
-{% if gitlan_registry_path | default(False) %}
+{% if gitlan_registry_path | default(false) %}
 gitlab_rails['registry_path'] = "{{ gitlan_registry_path }}"
 {% endif %}
 {% endif %}
-{% if gitlab_omniauth_providers | default(False) %}
+{% if gitlab_omniauth_providers | default(false) %}
 
 gitlab_rails['omniauth_providers'] = {{ gitlab_omniauth_providers | to_json }}
 gitlab_rails['omniauth_allow_single_sign_on'] = {{ gitlab_omniauth_allow_single_sign_on | to_json }}
 gitlab_rails['omniauth_auto_link_user'] = {{ gitlab_omniauth_auto_link_user | to_json }}
-{% if gitlab_omniauth_auto_link_user | default(False) %}
+{% if gitlab_omniauth_auto_link_user | default(false) %}
 gitlab_rails['omniauth_allow_bypass_two_factor'] = {{ gitlab_omniauth_allow_bypass_two_factor | to_json }}
 {% endif %}
 {% endif %}
-{% if gitlab_extra_config | default(False) %}
+{% if gitlab_extra_config | default(false) %}
 
 {{ gitlab_extra_config }}
 {% endif %}

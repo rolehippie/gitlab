@@ -21,7 +21,7 @@ gitlab_backup_upload_location:
 gitlab_backup_upload_remote_directory:
 
 # @var gitlab_redirect_http_to_https:description: Always redirect HTTP to HTTPS
-gitlab_redirect_http_to_https: True
+gitlab_redirect_http_to_https: true
 
 # @var gitlab_ssl_certificate:description: Path for SSL certificate
 gitlab_ssl_certificate: "/etc/gitlab/ssl/{{ gitlab_domain }}.crt"
@@ -30,7 +30,7 @@ gitlab_ssl_certificate: "/etc/gitlab/ssl/{{ gitlab_domain }}.crt"
 gitlab_ssl_certificate_key: "/etc/gitlab/ssl/{{ gitlab_domain }}.key"
 
 # @var gitlab_smtp_enable:description: Enable SMTP configuration
-gitlab_smtp_enable: False
+gitlab_smtp_enable: false
 
 # @var gitlab_smtp_address:description: Address for SMTP connection
 gitlab_smtp_address:
@@ -51,10 +51,10 @@ gitlab_smtp_domain:
 gitlab_smtp_authentication: "login"
 
 # @var gitlab_smtp_enable_starttls_auto:description: Enable STARTTLS for SMTP connection
-gitlab_smtp_enable_starttls_auto: True
+gitlab_smtp_enable_starttls_auto: true
 
 # @var gitlab_smtp_tls:description: Enable TLS for SMTP connection
-gitlab_smtp_tls: False
+gitlab_smtp_tls: false
 
 # @var gitlab_smtp_openssl_verify_mode:description: Verify SSL for SMTP connection
 gitlab_smtp_openssl_verify_mode: none
@@ -72,16 +72,16 @@ gitlab_time_zone: UTC
 gitlab_backup_keep_time: 604800
 
 # @var gitlab_block_auto_created_users:description: Block autocreated users
-gitlab_block_auto_created_users: False
+gitlab_block_auto_created_users: false
 
 # @var gitlab_download_validate_certs:description: Validate download certificates
-gitlab_download_validate_certs: True
+gitlab_download_validate_certs: true
 
 # @var gitlab_default_theme:description: Default theme for Gitlab
 gitlab_default_theme: 2
 
 # @var gitlab_email_enabled:description: Enable email configuration
-gitlab_email_enabled: False
+gitlab_email_enabled: false
 
 # @var gitlab_email_from:description: From used for email configuration
 gitlab_email_from: gitlab@example.com
@@ -93,7 +93,7 @@ gitlab_email_display_name: Gitlab
 gitlab_email_reply_to: gitlab@example.com
 
 # @var gitlab_registry_enable:description: Enable registry configuration
-gitlab_registry_enable: False
+gitlab_registry_enable: false
 
 # @var gitlab_registry_domain:description: Domain to access registry
 gitlab_registry_domain: registry.example.com
@@ -111,7 +111,7 @@ gitlab_registry_nginx_ssl_certificate_key: "/etc/gitlab/ssl/gitlab.key"
 gitlan_registry_path:
 
 # @var gitlab_letsencrypt_enable:description: Enabled Lets Encrypt configuration
-gitlab_letsencrypt_enable: False
+gitlab_letsencrypt_enable: false
 
 # @var gitlab_letsencrypt_contact_emails:description: List of contact mail adresses for Lets Encrypt
 gitlab_letsencrypt_contact_emails:
@@ -127,7 +127,7 @@ gitlab_letsencrypt_auto_renew_minute: 30
 gitlab_letsencrypt_auto_renew_day_of_month: "*/7"
 
 # @var gitlab_letsencrypt_auto_renew:description: Enable autorenew for LEts Encrypt
-gitlab_letsencrypt_auto_renew: True
+gitlab_letsencrypt_auto_renew: true
 
 # @var gitlab_omniauth_providers:description: List of Omniauth providers
 gitlab_omniauth_providers: []
@@ -145,7 +145,7 @@ gitlab_omniauth_allow_bypass_two_factor: []
 gitlab_extra_config:
 
 # @var gitlab_prune_daily_enabled:description:
-gitlab_prune_daily_enabled: False
+gitlab_prune_daily_enabled: false
 
 # @var gitlab_prune_daily_minute:description:
 gitlab_prune_daily_minute: "00"
@@ -178,7 +178,7 @@ gitlab_prune_daily_path: /usr/local/bin/gitlab-prune-daily
 gitlab_prune_daily_job: "/usr/bin/cronic {{ gitlab_prune_daily_path }}"
 
 # @var gitlab_prune_weekly_enabled:description:
-gitlab_prune_weekly_enabled: False
+gitlab_prune_weekly_enabled: false
 
 # @var gitlab_prune_weekly_minute:description:
 gitlab_prune_weekly_minute: "00"
@@ -211,7 +211,7 @@ gitlab_prune_weekly_path: /usr/local/bin/gitlab-prune-weekly
 gitlab_prune_weekly_job: "/usr/bin/cronic {{ gitlab_prune_weekly_path }}"
 
 # @var gitlab_config_backup_enabled:description:
-gitlab_config_backup_enabled: False
+gitlab_config_backup_enabled: false
 
 # @var gitlab_config_backup_minute:description:
 gitlab_config_backup_minute: "00"
@@ -244,7 +244,7 @@ gitlab_config_backup_path: /usr/local/bin/gitlab-backup-config
 gitlab_config_backup_job: "/usr/bin/cronic {{ gitlab_config_backup_path }}"
 
 # @var gitlab_content_backup_enabled:description:
-gitlab_content_backup_enabled: False
+gitlab_content_backup_enabled: false
 
 # @var gitlab_content_backup_minute:description:
 gitlab_content_backup_minute: "00"

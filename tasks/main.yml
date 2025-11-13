@@ -10,7 +10,7 @@
   ansible.builtin.apt_repository:
     repo: "deb [signed-by={{ gitlab_keyring }}] https://packages.gitlab.com/gitlab/gitlab-ce/ubuntu/ {{ ansible_distribution_release }} main"
     filename: gitlab
-    update_cache: True
+    update_cache: true
     state: present
   tags:
     - gitlab
@@ -42,7 +42,7 @@
     - gitlab
 
 - name: Initial reconfigure run
-  failed_when: False
+  failed_when: false
   ansible.builtin.command:
     cmd: gitlab-ctl reconfigure
     creates: /var/opt/gitlab/bootstrapped

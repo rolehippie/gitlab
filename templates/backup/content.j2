@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-{% if gitlab_content_backup_pre | default(False) %}
+{% if gitlab_content_backup_pre | default(false) %}
 {{ gitlab_content_backup_pre | trim }}
 {% endif %}
 {{ gitlab_content_backup_script }}
-{% if gitlab_content_backup_post | default(False) %}
+{% if gitlab_content_backup_post | default(false) %}
 {{ gitlab_content_backup_post | trim }}
 {% endif %}
