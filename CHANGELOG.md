@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.0](https://github.com/rolehippie/gitlab/compare/v2.3.0...v2.4.0) (2026-09-07)
+
+### Features
+
+* add separate requirements for molecule run ([7961c41](https://github.com/rolehippie/gitlab/commit/7961c4183e9984cb65dcda2e0f0b203d70713849))
+* use new required facts as attributes ([e27ea16](https://github.com/rolehippie/gitlab/commit/e27ea164947bd4b436beb45f675620e272476511))
+
 ## [2.3.0](https://github.com/rolehippie/gitlab/compare/v2.2.0...v2.3.0) (2026-07-27)
 
 ## [2.2.0](https://github.com/rolehippie/gitlab/compare/v2.1.0...v2.2.0) (2025-11-17)
