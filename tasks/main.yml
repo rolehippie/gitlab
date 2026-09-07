@@ -8,7 +8,7 @@
 
 - name: Add apt repository
   ansible.builtin.apt_repository:
-    repo: "deb [signed-by={{ gitlab_keyring }}] https://packages.gitlab.com/gitlab/gitlab-ce/ubuntu/ {{ ansible_distribution_release }} main"
+    repo: "deb [signed-by={{ gitlab_keyring }}] https://packages.gitlab.com/gitlab/gitlab-ce/ubuntu/ {{ ansible_facts['distribution_release'] }} main"
     filename: gitlab
     update_cache: true
     state: present
