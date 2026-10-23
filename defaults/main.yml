@@ -65,6 +65,9 @@ gitlab_smtp_ca_path: /etc/ssl/certs
 # @var gitlab_smtp_ca_file:description: Path to CA certificate file for SMTP connections
 gitlab_smtp_ca_file: /etc/ssl/certs/ca-certificates.crt
 
+# @var gitlab_env_variables:description: Environment variables for Gitlab
+gitlab_env_variables: {}
+
 # @var gitlab_time_zone:description: Timezone used for Gitlab
 gitlab_time_zone: UTC
 
@@ -144,136 +147,184 @@ gitlab_omniauth_allow_bypass_two_factor: []
 # @var gitlab_extra_config:description: Optional additional configuration for gitlab.rb config file
 gitlab_extra_config:
 
-# @var gitlab_prune_daily_enabled:description:
+# @var gitlab_prune_daily_enabled:description: Enable daily pruning of the GitLab registry
 gitlab_prune_daily_enabled: false
 
-# @var gitlab_prune_daily_minute:description:
+# @var gitlab_prune_daily_minute:description: Minute to run daily pruning
 gitlab_prune_daily_minute: "00"
 
-# @var gitlab_prune_daily_hour:description:
+# @var gitlab_prune_daily_hour:description: Hour to run daily pruning
 gitlab_prune_daily_hour: "02"
 
-# @var gitlab_prune_daily_day:description:
+# @var gitlab_prune_daily_day:description: Day of the month to run daily pruning
 gitlab_prune_daily_day: "*"
 
-# @var gitlab_prune_daily_month:description:
+# @var gitlab_prune_daily_month:description: Month to run daily pruning
 gitlab_prune_daily_month: "*"
 
-# @var gitlab_prune_daily_weekday:description:
+# @var gitlab_prune_daily_weekday:description: Weekday to run daily pruning
 gitlab_prune_daily_weekday: "1-6"
 
-# @var gitlab_prune_daily_pre:description:
+# @var gitlab_prune_daily_pre:description: Pre-script to run before daily pruning
 gitlab_prune_daily_pre:
 
-# @var gitlab_prune_daily_script:description:
+# @var gitlab_prune_daily_script:description: Script to execute for daily pruning
 gitlab_prune_daily_script: gitlab-ctl registry-garbage-collect
 
-# @var gitlab_prune_daily_post:description:
+# @var gitlab_prune_daily_post:description: Post-script to run after daily pruning
 gitlab_prune_daily_post:
 
-# @var gitlab_prune_daily_path:description:
+# @var gitlab_prune_daily_path:description: Path to the daily pruning script
 gitlab_prune_daily_path: /usr/local/bin/gitlab-prune-daily
 
-# @var gitlab_prune_daily_job:description:
+# @var gitlab_prune_daily_job:description: Cron job command for daily pruning
 gitlab_prune_daily_job: "/usr/bin/cronic {{ gitlab_prune_daily_path }}"
 
-# @var gitlab_prune_weekly_enabled:description:
+# @var gitlab_prune_weekly_enabled:description: Enable weekly pruning of the GitLab registry
 gitlab_prune_weekly_enabled: false
 
-# @var gitlab_prune_weekly_minute:description:
+# @var gitlab_prune_weekly_minute:description: Minute to run weekly pruning
 gitlab_prune_weekly_minute: "00"
 
-# @var gitlab_prune_weekly_hour:description:
+# @var gitlab_prune_weekly_hour:description: Hour to run weekly pruning
 gitlab_prune_weekly_hour: "02"
 
-# @var gitlab_prune_weekly_day:description:
+# @var gitlab_prune_weekly_day:description: Day of the month to run weekly pruning
 gitlab_prune_weekly_day: "*"
 
-# @var gitlab_prune_weekly_month:description:
+# @var gitlab_prune_weekly_month:description: Month to run weekly pruning
 gitlab_prune_weekly_month: "*"
 
-# @var gitlab_prune_weekly_weekday:description:
+# @var gitlab_prune_weekly_weekday:description: Weekday to run weekly pruning
 gitlab_prune_weekly_weekday: "0"
 
-# @var gitlab_prune_weekly_pre:description:
+# @var gitlab_prune_weekly_pre:description: Pre-script to run before weekly pruning
 gitlab_prune_weekly_pre:
 
-# @var gitlab_prune_weekly_script:description:
+# @var gitlab_prune_weekly_script:description: Script to execute for weekly pruning
 gitlab_prune_weekly_script: gitlab-ctl registry-garbage-collect -m
 
-# @var gitlab_prune_weekly_post:description:
+# @var gitlab_prune_weekly_post:description: Post-script to run after weekly pruning
 gitlab_prune_weekly_post:
 
-# @var gitlab_prune_weekly_path:description:
+# @var gitlab_prune_weekly_path:description: Path to the weekly pruning script
 gitlab_prune_weekly_path: /usr/local/bin/gitlab-prune-weekly
 
-# @var gitlab_prune_weekly_job:description:
+# @var gitlab_prune_weekly_job:description: Cron job command for weekly pruning
 gitlab_prune_weekly_job: "/usr/bin/cronic {{ gitlab_prune_weekly_path }}"
 
-# @var gitlab_config_backup_enabled:description:
+# @var gitlab_tfstate_backup_enabled:description: Enable backup of the builting Terraform remote state
+gitlab_tfstate_backup_enabled: false
+
+# @var gitlab_tfstate_backup_minute:description: Minute to run Terraform state backup
+gitlab_tfstate_backup_minute: "0"
+
+# @var gitlab_tfstate_backup_hour:description: Hour to run Terraform state backup
+gitlab_tfstate_backup_hour: "3"
+
+# @var gitlab_tfstate_backup_day:description: Day of the month to run Terraform state backup
+gitlab_tfstate_backup_day: "*"
+
+# @var gitlab_tfstate_backup_month:description: Month to run Terraform state backup
+gitlab_tfstate_backup_month: "*"
+
+# @var gitlab_tfstate_backup_weekday:description: Weekday to run Terraform state backup
+gitlab_tfstate_backup_weekday: "*"
+
+# @var gitlab_tfstate_backup_token:description: Token to use for backing up the builting Terraform remote state
+gitlab_tfstate_backup_token: ~
+
+# @var gitlab_tfstate_backup_pre:description: Pre-script to run before Terraform state backup
+gitlab_tfstate_backup_pre:
+
+# @var gitlab_tfstate_backup_script:description: Script to execute for Terraform state backup
+gitlab_tfstate_backup_script: |
+  mkdir -p {{ gitlab_backup_path }}/tfstate
+  rm -f {{ gitlab_backup_path }}/tfstate/*
+  TOKEN="{{ gitlab_tfstate_backup_token }}"
+
+  gitlab-psql -At -F' ' -c "select project_id, name from terraform_states where deleted_at is null" |
+  while read -r PROJECT STATE; do
+      curl -fsSo- \
+          -H "PRIVATE-TOKEN: ${TOKEN}" \
+          "https://git.cloudpunks.io/api/v4/projects/${PROJECT}/terraform/state/${STATE}" \
+          | gzip \
+          > "{{ gitlab_backup_path }}/tfstate/${PROJECT}-${STATE}.tfstate.gz"
+  done
+
+# @var gitlab_tfstate_backup_post:description: Post-script to run after Terraform state backup
+gitlab_tfstate_backup_post:
+
+# @var gitlab_tfstate_backup_path:description: Path to the Terraform state backup script
+gitlab_tfstate_backup_path: /usr/local/bin/gitlab-backup-tfstate
+
+# @var gitlab_tfstate_backup_job:description: Cron job command for Terraform state backup
+gitlab_tfstate_backup_job: "/usr/bin/cronic {{ gitlab_tfstate_backup_path }}"
+
+# @var gitlab_config_backup_enabled:description: Enable backup of the GitLab configuration
 gitlab_config_backup_enabled: false
 
-# @var gitlab_config_backup_minute:description:
-gitlab_config_backup_minute: "00"
+# @var gitlab_config_backup_minute:description: Minute to run GitLab configuration backup
+gitlab_config_backup_minute: "0"
 
-# @var gitlab_config_backup_hour:description:
-gitlab_config_backup_hour: "03"
+# @var gitlab_config_backup_hour:description: Hour to run GitLab configuration backup
+gitlab_config_backup_hour: "3"
 
-# @var gitlab_config_backup_day:description:
+# @var gitlab_config_backup_day:description: Day of the month to run GitLab configuration backup
 gitlab_config_backup_day: "*"
 
-# @var gitlab_config_backup_month:description:
+# @var gitlab_config_backup_month:description: Month to run GitLab configuration backup
 gitlab_config_backup_month: "*"
 
-# @var gitlab_config_backup_weekday:description:
+# @var gitlab_config_backup_weekday:description: Weekday to run GitLab configuration backup
 gitlab_config_backup_weekday: "*"
 
-# @var gitlab_config_backup_pre:description:
+# @var gitlab_config_backup_pre:description: Pre-script to run before GitLab configuration backup
 gitlab_config_backup_pre:
 
-# @var gitlab_config_backup_script:description:
+# @var gitlab_config_backup_script:description: Script to execute for GitLab configuration backup
 gitlab_config_backup_script: gitlab-ctl backup-etc --delete-old-backups
 
-# @var gitlab_config_backup_post:description:
+# @var gitlab_config_backup_post:description: Post-script to run after GitLab configuration backup
 gitlab_config_backup_post:
 
-# @var gitlab_config_backup_path:description:
+# @var gitlab_config_backup_path:description: Path to the GitLab configuration backup script
 gitlab_config_backup_path: /usr/local/bin/gitlab-backup-config
 
-# @var gitlab_config_backup_job:description:
+# @var gitlab_config_backup_job:description: Cron job command for GitLab configuration backup
 gitlab_config_backup_job: "/usr/bin/cronic {{ gitlab_config_backup_path }}"
 
-# @var gitlab_content_backup_enabled:description:
+# @var gitlab_content_backup_enabled:description: Enable backup of the GitLab content
 gitlab_content_backup_enabled: false
 
-# @var gitlab_content_backup_minute:description:
-gitlab_content_backup_minute: "00"
+# @var gitlab_content_backup_minute:description: Minute to run GitLab content backup
+gitlab_content_backup_minute: "0"
 
-# @var gitlab_content_backup_hour:description:
-gitlab_content_backup_hour: "03"
+# @var gitlab_content_backup_hour:description: Hour to run GitLab content backup
+gitlab_content_backup_hour: "3"
 
-# @var gitlab_content_backup_day:description:
+# @var gitlab_content_backup_day:description: Day of the month to run GitLab content backup
 gitlab_content_backup_day: "*"
 
-# @var gitlab_content_backup_month:description:
+# @var gitlab_content_backup_month:description: Month to run GitLab content backup
 gitlab_content_backup_month: "*"
 
-# @var gitlab_content_backup_weekday:description:
+# @var gitlab_content_backup_weekday:description: Weekday to run GitLab content backup
 gitlab_content_backup_weekday: "*"
 
-# @var gitlab_content_backup_pre:description:
+# @var gitlab_content_backup_pre:description: Pre-script to run before GitLab content backup
 gitlab_content_backup_pre:
 
-# @var gitlab_content_backup_script:description:
+# @var gitlab_content_backup_script:description: Script to execute for GitLab content backup
 gitlab_content_backup_script: gitlab-backup create
 
-# @var gitlab_content_backup_post:description:
+# @var gitlab_content_backup_post:description: Post-script to run after GitLab content backup
 gitlab_content_backup_post:
 
-# @var gitlab_content_backup_path:description:
+# @var gitlab_content_backup_path:description: Path to the GitLab content backup script
 gitlab_content_backup_path: /usr/local/bin/gitlab-backup-content
 
-# @var gitlab_content_backup_job:description:
+# @var gitlab_content_backup_job:description: Cron job command for GitLab content backup
 gitlab_content_backup_job: "/usr/bin/cronic {{ gitlab_content_backup_path }}"
 
 # @var gitlab_keyring:description: Path for the repository keyring

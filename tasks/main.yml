@@ -1,8 +1,28 @@
 ---
 - name: Download repo key
-  ansible.builtin.shell:
-    cmd: "curl -sSL 'https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey' | gpg --dearmor --output {{ gitlab_keyring }}"
-    creates: "{{ gitlab_keyring }}"
+  register: gitlab_key_download
+  ansible.builtin.get_url:
+    url: "https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey"
+    dest: "{{ gitlab_keyring }}.asc"
+    mode: u=rw,g=r,o=r
+    force: true
+  tags:
+    - gitlab
+
+- name: Check repo key
+  register: gitlab_key_status
+  ansible.builtin.stat:
+    path: "{{ gitlab_keyring }}"
+  tags:
+    - gitlab
+
+- name: Dearmor repo key
+  when:
+    - gitlab_key_download.changed or not gitlab_key_status.stat.exists
+  register: gitlab_key_convert
+  changed_when: gitlab_key_convert.rc == 0
+  ansible.builtin.command:
+    cmd: "gpg --batch --yes --dearmor -o {{ gitlab_keyring }} {{ gitlab_keyring }}.asc"
   tags:
     - gitlab
 
@@ -129,6 +149,42 @@
     - not gitlab_prune_weekly_enabled
   ansible.builtin.file:
     path: "{{ gitlab_prune_weekly_path }}"
+    state: absent
+  tags:
+    - gitlab
+
+- name: Create tfstate cronjob
+  ansible.builtin.cron:
+    name: tfstate
+    cron_file: gitlab
+    minute: "{{ gitlab_tfstate_backup_minute }}"
+    hour: "{{ gitlab_tfstate_backup_hour }}"
+    day: "{{ gitlab_tfstate_backup_day }}"
+    month: "{{ gitlab_tfstate_backup_month }}"
+    weekday: "{{ gitlab_tfstate_backup_weekday }}"
+    job: "{{ gitlab_tfstate_backup_job }}"
+    user: root
+    state: "{{ 'present' if gitlab_tfstate_backup_enabled else 'absent' }}"
+  tags:
+    - gitlab
+
+- name: Write tfstate backup
+  when:
+    - gitlab_tfstate_backup_enabled
+  ansible.builtin.template:
+    src: backup/tfstate.j2
+    dest: "{{ gitlab_tfstate_backup_path }}"
+    owner: root
+    group: root
+    mode: u=rwx,g=,o=
+  tags:
+    - gitlab
+
+- name: Remove tfstate backup
+  when:
+    - not gitlab_tfstate_backup_enabled
+  ansible.builtin.file:
+    path: "{{ gitlab_tfstate_backup_path }}"
     state: absent
   tags:
     - gitlab
