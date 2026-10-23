@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.5.1](https://github.com/rolehippie/gitlab/compare/v2.5.0...v2.5.1) (2026-10-23)
+
+### Bugfixes
+
+* use correctly new lines within config ([cc25949](https://github.com/rolehippie/gitlab/commit/cc2594988b47e1a44f4480eee4afa60e119189fb))
+
 ## [2.5.0](https://github.com/rolehippie/gitlab/compare/v2.4.0...v2.5.0) (2026-10-23)
 
 ### Features
