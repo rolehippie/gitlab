@@ -51,6 +51,7 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [gitlab_email_enabled](#gitlab_email_enabled)
   - [gitlab_email_from](#gitlab_email_from)
   - [gitlab_email_reply_to](#gitlab_email_reply_to)
+  - [gitlab_env_variables](#gitlab_env_variables)
   - [gitlab_external_url](#gitlab_external_url)
   - [gitlab_extra_config](#gitlab_extra_config)
   - [gitlab_git_data_dir](#gitlab_git_data_dir)
@@ -107,6 +108,18 @@ Building and improving this Ansible role have been sponsored by my current and p
   - [gitlab_smtp_user_name](#gitlab_smtp_user_name)
   - [gitlab_ssl_certificate](#gitlab_ssl_certificate)
   - [gitlab_ssl_certificate_key](#gitlab_ssl_certificate_key)
+  - [gitlab_tfstate_backup_day](#gitlab_tfstate_backup_day)
+  - [gitlab_tfstate_backup_enabled](#gitlab_tfstate_backup_enabled)
+  - [gitlab_tfstate_backup_hour](#gitlab_tfstate_backup_hour)
+  - [gitlab_tfstate_backup_job](#gitlab_tfstate_backup_job)
+  - [gitlab_tfstate_backup_minute](#gitlab_tfstate_backup_minute)
+  - [gitlab_tfstate_backup_month](#gitlab_tfstate_backup_month)
+  - [gitlab_tfstate_backup_path](#gitlab_tfstate_backup_path)
+  - [gitlab_tfstate_backup_post](#gitlab_tfstate_backup_post)
+  - [gitlab_tfstate_backup_pre](#gitlab_tfstate_backup_pre)
+  - [gitlab_tfstate_backup_script](#gitlab_tfstate_backup_script)
+  - [gitlab_tfstate_backup_token](#gitlab_tfstate_backup_token)
+  - [gitlab_tfstate_backup_weekday](#gitlab_tfstate_backup_weekday)
   - [gitlab_time_zone](#gitlab_time_zone)
   - [gitlab_version](#gitlab_version)
   - [gitlan_external_url](#gitlan_external_url)
@@ -176,7 +189,7 @@ gitlab_block_auto_created_users: false
 
 ### gitlab_config_backup_day
 
-
+Day of the month to run GitLab configuration backup
 
 #### Default value
 
@@ -186,7 +199,7 @@ gitlab_config_backup_day: '*'
 
 ### gitlab_config_backup_enabled
 
-
+Enable backup of the GitLab configuration
 
 #### Default value
 
@@ -196,17 +209,17 @@ gitlab_config_backup_enabled: false
 
 ### gitlab_config_backup_hour
 
-
+Hour to run GitLab configuration backup
 
 #### Default value
 
 ```YAML
-gitlab_config_backup_hour: '03'
+gitlab_config_backup_hour: '3'
 ```
 
 ### gitlab_config_backup_job
 
-
+Cron job command for GitLab configuration backup
 
 #### Default value
 
@@ -216,17 +229,17 @@ gitlab_config_backup_job: /usr/bin/cronic {{ gitlab_config_backup_path }}
 
 ### gitlab_config_backup_minute
 
-
+Minute to run GitLab configuration backup
 
 #### Default value
 
 ```YAML
-gitlab_config_backup_minute: '00'
+gitlab_config_backup_minute: '0'
 ```
 
 ### gitlab_config_backup_month
 
-
+Month to run GitLab configuration backup
 
 #### Default value
 
@@ -236,7 +249,7 @@ gitlab_config_backup_month: '*'
 
 ### gitlab_config_backup_path
 
-
+Path to the GitLab configuration backup script
 
 #### Default value
 
@@ -246,7 +259,7 @@ gitlab_config_backup_path: /usr/local/bin/gitlab-backup-config
 
 ### gitlab_config_backup_post
 
-
+Post-script to run after GitLab configuration backup
 
 #### Default value
 
@@ -256,7 +269,7 @@ gitlab_config_backup_post:
 
 ### gitlab_config_backup_pre
 
-
+Pre-script to run before GitLab configuration backup
 
 #### Default value
 
@@ -266,7 +279,7 @@ gitlab_config_backup_pre:
 
 ### gitlab_config_backup_script
 
-
+Script to execute for GitLab configuration backup
 
 #### Default value
 
@@ -276,7 +289,7 @@ gitlab_config_backup_script: gitlab-ctl backup-etc --delete-old-backups
 
 ### gitlab_config_backup_weekday
 
-
+Weekday to run GitLab configuration backup
 
 #### Default value
 
@@ -286,7 +299,7 @@ gitlab_config_backup_weekday: '*'
 
 ### gitlab_content_backup_day
 
-
+Day of the month to run GitLab content backup
 
 #### Default value
 
@@ -296,7 +309,7 @@ gitlab_content_backup_day: '*'
 
 ### gitlab_content_backup_enabled
 
-
+Enable backup of the GitLab content
 
 #### Default value
 
@@ -306,17 +319,17 @@ gitlab_content_backup_enabled: false
 
 ### gitlab_content_backup_hour
 
-
+Hour to run GitLab content backup
 
 #### Default value
 
 ```YAML
-gitlab_content_backup_hour: '03'
+gitlab_content_backup_hour: '3'
 ```
 
 ### gitlab_content_backup_job
 
-
+Cron job command for GitLab content backup
 
 #### Default value
 
@@ -326,17 +339,17 @@ gitlab_content_backup_job: /usr/bin/cronic {{ gitlab_content_backup_path }}
 
 ### gitlab_content_backup_minute
 
-
+Minute to run GitLab content backup
 
 #### Default value
 
 ```YAML
-gitlab_content_backup_minute: '00'
+gitlab_content_backup_minute: '0'
 ```
 
 ### gitlab_content_backup_month
 
-
+Month to run GitLab content backup
 
 #### Default value
 
@@ -346,7 +359,7 @@ gitlab_content_backup_month: '*'
 
 ### gitlab_content_backup_path
 
-
+Path to the GitLab content backup script
 
 #### Default value
 
@@ -356,7 +369,7 @@ gitlab_content_backup_path: /usr/local/bin/gitlab-backup-content
 
 ### gitlab_content_backup_post
 
-
+Post-script to run after GitLab content backup
 
 #### Default value
 
@@ -366,7 +379,7 @@ gitlab_content_backup_post:
 
 ### gitlab_content_backup_pre
 
-
+Pre-script to run before GitLab content backup
 
 #### Default value
 
@@ -376,7 +389,7 @@ gitlab_content_backup_pre:
 
 ### gitlab_content_backup_script
 
-
+Script to execute for GitLab content backup
 
 #### Default value
 
@@ -386,7 +399,7 @@ gitlab_content_backup_script: gitlab-backup create
 
 ### gitlab_content_backup_weekday
 
-
+Weekday to run GitLab content backup
 
 #### Default value
 
@@ -462,6 +475,16 @@ Reply used for email configuration
 
 ```YAML
 gitlab_email_reply_to: gitlab@example.com
+```
+
+### gitlab_env_variables
+
+Environment variables for Gitlab
+
+#### Default value
+
+```YAML
+gitlab_env_variables: {}
 ```
 
 ### gitlab_external_url
@@ -603,7 +626,7 @@ gitlab_omniauth_providers: []
 
 ### gitlab_prune_daily_day
 
-
+Day of the month to run daily pruning
 
 #### Default value
 
@@ -613,7 +636,7 @@ gitlab_prune_daily_day: '*'
 
 ### gitlab_prune_daily_enabled
 
-
+Enable daily pruning of the GitLab registry
 
 #### Default value
 
@@ -623,7 +646,7 @@ gitlab_prune_daily_enabled: false
 
 ### gitlab_prune_daily_hour
 
-
+Hour to run daily pruning
 
 #### Default value
 
@@ -633,7 +656,7 @@ gitlab_prune_daily_hour: '02'
 
 ### gitlab_prune_daily_job
 
-
+Cron job command for daily pruning
 
 #### Default value
 
@@ -643,7 +666,7 @@ gitlab_prune_daily_job: /usr/bin/cronic {{ gitlab_prune_daily_path }}
 
 ### gitlab_prune_daily_minute
 
-
+Minute to run daily pruning
 
 #### Default value
 
@@ -653,7 +676,7 @@ gitlab_prune_daily_minute: '00'
 
 ### gitlab_prune_daily_month
 
-
+Month to run daily pruning
 
 #### Default value
 
@@ -663,7 +686,7 @@ gitlab_prune_daily_month: '*'
 
 ### gitlab_prune_daily_path
 
-
+Path to the daily pruning script
 
 #### Default value
 
@@ -673,7 +696,7 @@ gitlab_prune_daily_path: /usr/local/bin/gitlab-prune-daily
 
 ### gitlab_prune_daily_post
 
-
+Post-script to run after daily pruning
 
 #### Default value
 
@@ -683,7 +706,7 @@ gitlab_prune_daily_post:
 
 ### gitlab_prune_daily_pre
 
-
+Pre-script to run before daily pruning
 
 #### Default value
 
@@ -693,7 +716,7 @@ gitlab_prune_daily_pre:
 
 ### gitlab_prune_daily_script
 
-
+Script to execute for daily pruning
 
 #### Default value
 
@@ -703,7 +726,7 @@ gitlab_prune_daily_script: gitlab-ctl registry-garbage-collect
 
 ### gitlab_prune_daily_weekday
 
-
+Weekday to run daily pruning
 
 #### Default value
 
@@ -713,7 +736,7 @@ gitlab_prune_daily_weekday: 1-6
 
 ### gitlab_prune_weekly_day
 
-
+Day of the month to run weekly pruning
 
 #### Default value
 
@@ -723,7 +746,7 @@ gitlab_prune_weekly_day: '*'
 
 ### gitlab_prune_weekly_enabled
 
-
+Enable weekly pruning of the GitLab registry
 
 #### Default value
 
@@ -733,7 +756,7 @@ gitlab_prune_weekly_enabled: false
 
 ### gitlab_prune_weekly_hour
 
-
+Hour to run weekly pruning
 
 #### Default value
 
@@ -743,7 +766,7 @@ gitlab_prune_weekly_hour: '02'
 
 ### gitlab_prune_weekly_job
 
-
+Cron job command for weekly pruning
 
 #### Default value
 
@@ -753,7 +776,7 @@ gitlab_prune_weekly_job: /usr/bin/cronic {{ gitlab_prune_weekly_path }}
 
 ### gitlab_prune_weekly_minute
 
-
+Minute to run weekly pruning
 
 #### Default value
 
@@ -763,7 +786,7 @@ gitlab_prune_weekly_minute: '00'
 
 ### gitlab_prune_weekly_month
 
-
+Month to run weekly pruning
 
 #### Default value
 
@@ -773,7 +796,7 @@ gitlab_prune_weekly_month: '*'
 
 ### gitlab_prune_weekly_path
 
-
+Path to the weekly pruning script
 
 #### Default value
 
@@ -783,7 +806,7 @@ gitlab_prune_weekly_path: /usr/local/bin/gitlab-prune-weekly
 
 ### gitlab_prune_weekly_post
 
-
+Post-script to run after weekly pruning
 
 #### Default value
 
@@ -793,7 +816,7 @@ gitlab_prune_weekly_post:
 
 ### gitlab_prune_weekly_pre
 
-
+Pre-script to run before weekly pruning
 
 #### Default value
 
@@ -803,7 +826,7 @@ gitlab_prune_weekly_pre:
 
 ### gitlab_prune_weekly_script
 
-
+Script to execute for weekly pruning
 
 #### Default value
 
@@ -813,7 +836,7 @@ gitlab_prune_weekly_script: gitlab-ctl registry-garbage-collect -m
 
 ### gitlab_prune_weekly_weekday
 
-
+Weekday to run weekly pruning
 
 #### Default value
 
@@ -1019,6 +1042,138 @@ Path for SSL certificate key
 
 ```YAML
 gitlab_ssl_certificate_key: /etc/gitlab/ssl/{{ gitlab_domain }}.key
+```
+
+### gitlab_tfstate_backup_day
+
+Day of the month to run Terraform state backup
+
+#### Default value
+
+```YAML
+gitlab_tfstate_backup_day: '*'
+```
+
+### gitlab_tfstate_backup_enabled
+
+Enable backup of the builting Terraform remote state
+
+#### Default value
+
+```YAML
+gitlab_tfstate_backup_enabled: false
+```
+
+### gitlab_tfstate_backup_hour
+
+Hour to run Terraform state backup
+
+#### Default value
+
+```YAML
+gitlab_tfstate_backup_hour: '3'
+```
+
+### gitlab_tfstate_backup_job
+
+Cron job command for Terraform state backup
+
+#### Default value
+
+```YAML
+gitlab_tfstate_backup_job: /usr/bin/cronic {{ gitlab_tfstate_backup_path }}
+```
+
+### gitlab_tfstate_backup_minute
+
+Minute to run Terraform state backup
+
+#### Default value
+
+```YAML
+gitlab_tfstate_backup_minute: '0'
+```
+
+### gitlab_tfstate_backup_month
+
+Month to run Terraform state backup
+
+#### Default value
+
+```YAML
+gitlab_tfstate_backup_month: '*'
+```
+
+### gitlab_tfstate_backup_path
+
+Path to the Terraform state backup script
+
+#### Default value
+
+```YAML
+gitlab_tfstate_backup_path: /usr/local/bin/gitlab-backup-tfstate
+```
+
+### gitlab_tfstate_backup_post
+
+Post-script to run after Terraform state backup
+
+#### Default value
+
+```YAML
+gitlab_tfstate_backup_post:
+```
+
+### gitlab_tfstate_backup_pre
+
+Pre-script to run before Terraform state backup
+
+#### Default value
+
+```YAML
+gitlab_tfstate_backup_pre:
+```
+
+### gitlab_tfstate_backup_script
+
+Script to execute for Terraform state backup
+
+#### Default value
+
+```YAML
+gitlab_tfstate_backup_script: |
+  mkdir -p {{ gitlab_backup_path }}/tfstate
+  rm -f {{ gitlab_backup_path }}/tfstate/*
+  TOKEN="{{ gitlab_tfstate_backup_token }}"
+
+  gitlab-psql -At -F' ' -c "select project_id, name from terraform_states where deleted_at is null" |
+  while read -r PROJECT STATE; do
+      curl -fsSo- \
+          -H "PRIVATE-TOKEN: ${TOKEN}" \
+          "https://git.cloudpunks.io/api/v4/projects/${PROJECT}/terraform/state/${STATE}" \
+          | gzip \
+          > "{{ gitlab_backup_path }}/tfstate/${PROJECT}-${STATE}.tfstate.gz"
+  done
+```
+
+### gitlab_tfstate_backup_token
+
+Token to use for backing up the builting Terraform remote state
+
+#### Default value
+
+```YAML
+gitlab_tfstate_backup_token:
+```
+
+### gitlab_tfstate_backup_weekday
+
+Weekday to run Terraform state backup
+
+#### Default value
+
+```YAML
+gitlab_tfstate_backup_weekday: '*'
 ```
 
 ### gitlab_time_zone
