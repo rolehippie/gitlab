@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.5.0](https://github.com/rolehippie/gitlab/compare/v2.4.0...v2.5.0) (2026-10-23)
+
+### Features
+
+* integrate tfstate backup and make linter happy ([4a9ec74](https://github.com/rolehippie/gitlab/commit/4a9ec74a0d7bdd378251539869ad302fb46bfd65))
+
+### Dependencies
+
+* **mise:** update dependency prek to v0.5.3 ([113549a](https://github.com/rolehippie/gitlab/commit/113549adfa7864f3a0ff61513a5f7fcbc63c8b66))
+
 ## [2.4.0](https://github.com/rolehippie/gitlab/compare/v2.3.0...v2.4.0) (2026-09-07)
 
 ### Features
